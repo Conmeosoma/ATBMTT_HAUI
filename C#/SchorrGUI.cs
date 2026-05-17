@@ -37,6 +37,7 @@ namespace Schnorr
             Text = "Chữ Ký Điện Tử Schnorr";
             Size = new Size(1080, 780);
             StartPosition = FormStartPosition.CenterScreen;
+            DoubleBuffered = false; // disable Framework double buffering to avoid GDI+ GetHdc exception
             InitializeTheme();
             InitializeComponents();
         }
@@ -195,20 +196,23 @@ namespace Schnorr
             layout.Controls.Add(MakeCard("Kết quả băm SHA-256", hashDisplay), 0, 1);
             layout.Controls.Add(MakeCard("Chữ ký số tạo ra", signatureDisplay), 0, 2);
 
-            var signBtn = new GradientButton("✍  Thực Hiện Ký", GOLD, GOLD_LIGHT) { Width = 220 };
+            var signBtn = new GradientButton("✍  Thực Hiện Ký", GOLD, GOLD_LIGHT) { Width = 220, Height = 40 };
             signBtn.Click += (s, e) => HandleSignMessage();
 
+            var actionPanel = new FlowLayoutPanel { Dock = DockStyle.Bottom, FlowDirection = FlowDirection.RightToLeft, Padding = new Padding(8), Height = 56 };
+            actionPanel.Controls.Add(signBtn);
+
             tab.Controls.Add(layout);
-            tab.Controls.Add(signBtn);
-            signBtn.Location = new Point(tab.Width - 260, tab.Height - 80);
-            signBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            tab.Controls.Add(actionPanel);
             return tab;
         }
 
         private TabPage CreateVerifyTab()
         {
             var tab = new TabPage("✅  Xác Minh") { BackColor = PANEL_BG };
-            var layout = new TableLayoutPanel { Dock = DockStyle.Fill, RowCount = 3 };
+            var layout = new TableLayoutPanel { Dock = DockStyle.Fill, RowCount = 3, ColumnCount = 2 };
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
+            layout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 40));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 40));
             layout.RowStyles.Add(new RowStyle(SizeType.Percent, 20));
@@ -221,12 +225,15 @@ namespace Schnorr
             layout.Controls.Add(MakeCard("Dữ liệu chữ ký", verifySignatureInput), 0, 1);
             layout.Controls.Add(MakeCard("Khóa công khai người gửi", verifyPublicKeyDisplay), 0, 2);
 
-            var verifyBtn = new GradientButton("✅  Xác Minh Chữ Ký", GOLD, GOLD_LIGHT) { Width = 240 };
+            var actionPanel = new Panel { Dock = DockStyle.Fill, Padding = new Padding(8) };
+            var verifyBtn = new GradientButton("✅  Xác Minh Chữ Ký", GOLD, GOLD_LIGHT) { Width = 240, Height = 40, Anchor = AnchorStyles.Top | AnchorStyles.Right };
             verifyBtn.Click += (s, e) => HandleVerifySignature();
-            layout.Controls.Add(verifyBtn, 0, 2);
+            actionPanel.Controls.Add(verifyBtn);
 
-            verificationResultLabel = new Label { Text = "CHƯA XÁC MINH", Dock = DockStyle.Bottom, Height = 48, TextAlign = ContentAlignment.MiddleCenter, BackColor = CARD_BG, ForeColor = MUTED };
-            layout.Controls.Add(verificationResultLabel, 0, 2);
+            verificationResultLabel = new Label { Text = "CHƯA XÁC MINH", Height = 48, TextAlign = ContentAlignment.MiddleCenter, BackColor = CARD_BG, ForeColor = MUTED, Dock = DockStyle.Bottom };
+            actionPanel.Controls.Add(verificationResultLabel);
+
+            layout.Controls.Add(actionPanel, 1, 2);
 
             tab.Controls.Add(layout);
             return tab;
@@ -259,10 +266,12 @@ namespace Schnorr
 
         private Panel MakeCard(string title, Control content)
         {
-            var card = new ShadowCard { Padding = new Padding(12), Dock = DockStyle.Top, Height = content.Height + 60 };
+            var card = new ShadowCard { Padding = new Padding(12), Dock = DockStyle.Fill };
             var lbl = new Label { Text = title, Font = new Font("Segoe UI", 10, FontStyle.Bold), ForeColor = GOLD, AutoSize = true };
+            lbl.Location = new Point(8, 8);
             card.Controls.Add(lbl);
-            content.Location = new Point(8, 30);
+            content.Location = new Point(8, 36);
+            content.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             card.Controls.Add(content);
             return card;
         }
@@ -289,6 +298,9 @@ namespace Schnorr
                 gDisplay.Text = currentKeyPair.Params.G.ToString();
                 privateKeyDisplay.Text = currentKeyPair.PrivateKey.ToString();
                 publicKeyDisplay.Text = currentKeyPair.PublicKey.ToString();
+                // also populate the verify tab public key display so user can verify without copying manually
+                if (verifyPublicKeyDisplay != null)
+                    verifyPublicKeyDisplay.Text = currentKeyPair.PublicKey.ToString();
                 keySummaryDisplay.Text = $"P bits: {BigIntegerExtensions.GetBitLengthExt(currentKeyPair.Params.P)}\r\nQ bits: {BigIntegerExtensions.GetBitLengthExt(currentKeyPair.Params.Q)}\r\nX bits: {BigIntegerExtensions.GetBitLengthExt(currentKeyPair.PrivateKey)}";
             }
             catch (Exception ex)
@@ -305,15 +317,27 @@ namespace Schnorr
             currentSignature = algorithm.Sign(msg);
             hashDisplay.Text = currentSignature.E.ToString();
             signatureDisplay.Text = "s = " + currentSignature.S + "\r\n e = " + currentSignature.E;
+            // auto-fill verify tab with the signed data and public key
+            if (verifyMessageInput != null) verifyMessageInput.Text = msg;
+            if (verifySignatureInput != null) verifySignatureInput.Text = signatureDisplay.Text;
+            if (verifyPublicKeyDisplay != null) verifyPublicKeyDisplay.Text = currentKeyPair.PublicKey.ToString();
+            if (verificationResultLabel != null)
+            {
+                verificationResultLabel.Text = "CHƯA XÁC MINH";
+                verificationResultLabel.BackColor = CARD_BG;
+                verificationResultLabel.ForeColor = MUTED;
+            }
+            // switch to verify tab for convenience
+            try { tabs.SelectedIndex = 2; } catch { }
         }
 
         private void HandleVerifySignature()
         {
             if (currentKeyPair == null) { MessageBox.Show("Vui lòng tạo hoặc tải khóa công khai."); return; }
-            SchorrSignature sig = currentSignature;
-            if (sig == null)
+            SchorrSignature sig = null;
+            // if user provided a signature text, prefer parsing it
+            if (!string.IsNullOrWhiteSpace(verifySignatureInput.Text))
             {
-                // try parse
                 try
                 {
                     var lines = verifySignatureInput.Text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
@@ -331,6 +355,9 @@ namespace Schnorr
                 }
                 catch { MessageBox.Show("Không có chữ ký hợp lệ."); return; }
             }
+            // fallback to the last signature produced in-session
+            if (sig == null) sig = currentSignature;
+            if (sig == null) { MessageBox.Show("Không có chữ ký để xác minh."); return; }
             bool valid = algorithm.Verify(verifyMessageInput.Text ?? string.Empty, sig);
             if (valid)
             {
@@ -360,7 +387,7 @@ namespace Schnorr
         private class GradientPanel : Panel
         {
             private Color c1, c2;
-            public GradientPanel(Color c1, Color c2) { this.c1 = c1; this.c2 = c2; DoubleBuffered = true; }
+            public GradientPanel(Color c1, Color c2) { this.c1 = c1; this.c2 = c2; }
             protected override void OnPaint(PaintEventArgs e)
             {
                 try
@@ -380,7 +407,7 @@ namespace Schnorr
 
         private class ShadowCard : Panel
         {
-            public ShadowCard() { DoubleBuffered = true; BackColor = Color.White; }
+            public ShadowCard() { BackColor = Color.White; }
             protected override void OnPaint(PaintEventArgs e)
             {
                 try
@@ -421,7 +448,7 @@ namespace Schnorr
             {
                 selected = init;
                 animPos = selected ? 1f : 0f;
-                SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
+                SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint, true);
                 Width = 52; Height = 28;
                 animTimer = new System.Windows.Forms.Timer { Interval = 15 };
                 animTimer.Tick += (s, e) => { AnimateStep(); };

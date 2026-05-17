@@ -102,7 +102,6 @@ namespace Schnorr
             }
 
             var rng = RandomNumberGenerator.Create();
-            byte[] bytes = new byte[(int)BigIntegerExtensions.GetByteCountExt(n)];
 
             for (int i = 0; i < k; i++)
             {
