@@ -1,3 +1,4 @@
+
 import java.awt.GraphicsEnvironment;
 
 import javax.swing.*;
@@ -6,52 +7,43 @@ import javax.swing.*;
  * =========================================================================
  * SCHNORR DIGITAL SIGNATURE ALGORITHM - MAIN ENTRY POINT
  * =========================================================================
- * 
- * Ứng dụng: Mô phỏng thuật toán Chữ ký số Schnorr
- * Trường: HAUI (Hanoi University of Industry)
- * Môn học: An toàn Bảo mật Thông tin
- * 
- * Tác giả: Sinh viên Lớp [Tên lớp]
- * Ngày: 2026
- * 
+ *
+ * Ứng dụng: Mô phỏng thuật toán Chữ ký số Schnorr Trường: HAUI (Hanoi
+ * University of Industry) Môn học: An toàn Bảo mật Thông tin
+ *
+ * Tác giả: Sinh viên Lớp [Tên lớp] Ngày: 2026
+ *
  * =========================================================================
  * CHỨC NĂNG:
  * =========================================================================
- * 
- * GIAI ĐOẠN 1: Phát sinh khóa (Key Generation)
- * - Tạo cặp khóa công khai/bí mật
+ *
+ * GIAI ĐOẠN 1: Phát sinh khóa (Key Generation) - Tạo cặp khóa công khai/bí mật
  * - Sử dụng số nguyên tố lớn (256+ bit)
- * 
- * GIAI ĐOẠN 2: Tạo chữ ký (Signing)
- * - Ký thông điệp sử dụng khóa bí mật
- * - Kết quả: Chữ ký (s, e)
- * 
- * GIAI ĐOẠN 3: Xác minh chữ ký (Verification)
- * - Kiểm tra tính hợp lệ của chữ ký
+ *
+ * GIAI ĐOẠN 2: Tạo chữ ký (Signing) - Ký thông điệp sử dụng khóa bí mật - Kết
+ * quả: Chữ ký (s, e)
+ *
+ * GIAI ĐOẠN 3: Xác minh chữ ký (Verification) - Kiểm tra tính hợp lệ của chữ ký
  * - Hiển thị kết quả: Hợp lệ (Xanh) / Không hợp lệ (Đỏ)
- * 
+ *
  * =========================================================================
  * CÔNG NGHỆ SỬ DỤNG:
  * =========================================================================
- * 
- * - Ngôn ngữ: Java
- * - GUI Framework: Java Swing
- * - Toán học: java.math.BigInteger
- * - Hash: SHA-256 (java.security.MessageDigest)
- * - Random: java.security.SecureRandom
- * - Mục tiêu: Giáo dục, Demo, Học tập
- * 
+ *
+ * - Ngôn ngữ: Java - GUI Framework: Java Swing - Toán học: java.math.BigInteger
+ * - Hash: SHA-256 (java.security.MessageDigest) - Random:
+ * java.security.SecureRandom - Mục tiêu: Giáo dục, Demo, Học tập
+ *
  * =========================================================================
  * KIẾN TRÚC:
  * =========================================================================
- * 
- * SchorrSignatureParams.java → Tham số hệ thống (p, q, g)
- * SchorrKeyPair.java → Cặp khóa (khóa bí mật, khóa công khai)
- * SchorrSignature.java → Chữ ký (s, e)
+ *
+ * SchorrSignatureParams.java → Tham số hệ thống (p, q, g) SchorrKeyPair.java →
+ * Cặp khóa (khóa bí mật, khóa công khai) SchorrSignature.java → Chữ ký (s, e)
  * SchorrSignatureAlgorithm.java → Triển khai thuật toán 3 giai đoạn
- * SchorrGUI.java → Giao diện Swing
- * SchorrMain.java → Entry point chính (FILE NÀY)
- * 
+ * SchorrGUI.java → Giao diện Swing SchorrMain.java → Entry point chính (FILE
+ * NÀY)
+ *
  * =========================================================================
  */
 public class SchorrMain {
@@ -61,9 +53,9 @@ public class SchorrMain {
     private static final String APP_NAME = "Schnorr Digital Signature Simulator";
 
     /**
-     * Điểm vào chính của ứng dụng
-     * Kiểm tra các điều kiện tiên quyết rồi khởi chạy GUI
-     * 
+     * Điểm vào chính của ứng dụng Kiểm tra các điều kiện tiên quyết rồi khởi
+     * chạy GUI
+     *
      * @param args Tham số dòng lệnh (không sử dụng)
      */
     public static void main(String[] args) {
@@ -192,8 +184,8 @@ public class SchorrMain {
     }
 
     /**
-     * Khởi chạy giao diện GUI trên Event Dispatch Thread
-     * Điều này đảm bảo tính an toàn luồng (thread safety)
+     * Khởi chạy giao diện GUI trên Event Dispatch Thread Điều này đảm bảo tính
+     * an toàn luồng (thread safety)
      */
     private static void launchGUI() {
         System.out.println("🚀 Khởi chạy giao diện...");
