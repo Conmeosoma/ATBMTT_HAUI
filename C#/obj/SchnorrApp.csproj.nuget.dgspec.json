@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\C#\\SchnorrApp.csproj": {}
+    "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\c#\\SchnorrApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\C#\\SchnorrApp.csproj": {
+    "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\c#\\SchnorrApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\C#\\SchnorrApp.csproj",
+        "projectUniqueName": "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\c#\\SchnorrApp.csproj",
         "projectName": "SchnorrApp",
-        "projectPath": "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\C#\\SchnorrApp.csproj",
+        "projectPath": "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\c#\\SchnorrApp.csproj",
         "packagesPath": "C:\\Users\\Nguyen Nam Tien\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\C#\\obj\\",
+        "outputPath": "C:\\Users\\Nguyen Nam Tien\\Desktop\\CK\\An Toàn Bảo  Mật Thông Tin\\c#\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nguyen Nam Tien\\AppData\\Roaming\\NuGet\\NuGet.Config"
