@@ -1,0 +1,5 @@
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net7.0-windows\SchnorrApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net7.0-windows\SchnorrApp.AssemblyInfoInputs.cache
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net7.0-windows\SchnorrApp.AssemblyInfo.cs
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net7.0-windows\SchnorrApp.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net7.0-windows\SchnorrApp.sourcelink.json
