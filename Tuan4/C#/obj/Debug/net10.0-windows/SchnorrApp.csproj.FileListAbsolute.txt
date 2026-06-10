@@ -1,0 +1,15 @@
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.AssemblyInfoInputs.cache
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.AssemblyInfo.cs
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.csproj.CoreCompileInputs.cache
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.sourcelink.json
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\bin\Debug\net10.0-windows\SchnorrApp.exe
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\bin\Debug\net10.0-windows\SchnorrApp.deps.json
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\bin\Debug\net10.0-windows\SchnorrApp.runtimeconfig.json
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\bin\Debug\net10.0-windows\SchnorrApp.dll
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\bin\Debug\net10.0-windows\SchnorrApp.pdb
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.dll
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\refint\SchnorrApp.dll
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.pdb
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\SchnorrApp.genruntimeconfig.cache
+C:\Users\Nguyen Nam Tien\Desktop\CK\An Toàn Bảo  Mật Thông Tin\C#\obj\Debug\net10.0-windows\ref\SchnorrApp.dll
